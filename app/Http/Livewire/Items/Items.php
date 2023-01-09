@@ -22,7 +22,7 @@ class Items extends Component
     public function render()
     {
         return view('livewire.items.items',[
-            'items' => Item::getItems($this->search, $this->sortBy, $this->sortDirection, $this->perPage),
+            'all_items' => Item::getItems($this->search, $this->sortBy, $this->sortDirection, $this->perPage),
         ]);
     }
 

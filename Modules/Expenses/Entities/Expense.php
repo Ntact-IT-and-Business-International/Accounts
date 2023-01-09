@@ -44,16 +44,16 @@ class Expense extends Model
      */
     public static function getExpenses($search, $sortBy, $sortDirection, $perPage)
     {
-        return Expense::search($search)
+        return Expense::join('items','items.id','expenses.item_id')->search($search)
         ->orderBy($sortBy, $sortDirection)
         ->paginate($perPage);
     }
     /**
      * This function gets the form for editing Expenses information
      */
-    public static function editExpenses($expense_id)
+    public static function editExpenses($expenses_id)
     {
-        return Expense::whereId($expense_id)->get();
+        return Expense::whereId($expenses_id)->get();
     }
 
     /**
@@ -61,7 +61,7 @@ class Expense extends Model
      */
     public static function updateExpense($item_id,$expense_amount,$name_of_person_or_company,$date)
     {
-        Expense::whereId($expense_id)->update([
+        Expense::whereId($expenses_id)->update([
             'item_id' => $item_id,
             'expense_amount' =>$expense_amount,
             'name_of_person_or_company'=>$name_of_person_or_company,

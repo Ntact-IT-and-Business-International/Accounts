@@ -12,5 +12,6 @@
 */
 
 Route::prefix('items')->group(function() {
-    Route::get('/', 'ItemsController@index');
+    Route::get('/items', 'ItemsController@index')->name('Items');
+    Route::get('/edit-item/{item_id}','ItemsController@editItem')->name('EditItem');
 });
