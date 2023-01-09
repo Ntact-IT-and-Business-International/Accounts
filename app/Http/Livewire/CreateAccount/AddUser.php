@@ -3,8 +3,11 @@
 namespace App\Http\Livewire\CreateAccount;
 
 use Livewire\Component;
+use App\Models\User;
+use LivewireUI\Modal\ModalComponent;
+use Session;
 
-class AddUser extends Component
+class AddUser extends ModalComponent
 {
     public $name;
     public $email;
@@ -17,7 +20,7 @@ class AddUser extends Component
         'name' =>'required',
         'email' =>'required|unique:users',
         'password' =>'required',
-        'confirm_password' =>'required',
+        'confirm_password' => 'required|same:password',
     ];
     public function render()
     {
@@ -25,7 +28,7 @@ class AddUser extends Component
     }
     public function submit(){
         $this->validate();
-        user::createAccount($this->name, $this->email,$this->password, $this->current_photo);
+        User::createAccount($this->name, $this->email, $this->password);
         //Refresh Income component
         $this->emit('CreateAccount.Users', 'refreshComponent');
          //closes modal after adding Income

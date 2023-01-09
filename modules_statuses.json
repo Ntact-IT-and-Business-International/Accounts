@@ -1,5 +1,6 @@
 {
     "Income": true,
     "Expenses": true,
-    "Items": true
+    "Items": true,
+    "AccountSettings": true
 }

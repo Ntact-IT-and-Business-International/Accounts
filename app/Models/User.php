@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Hash;
 
 class User extends Authenticatable
 {
@@ -58,16 +59,28 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    /**
-     * This function creates a user
-     */
-    public static function createAccount($name, $email,$password, $current_photo)
+    //Tis function searches by any of this fields
+    public function scopeSearch($query, $val)
+    {
+        return $query
+        ->where('name', 'like', '%'.$val.'%')
+        ->orWhere('email', 'like', '%'.$val.'%');
+    }
+    public static function createAccount($name, $email,$password)
     {
         User::create([
             'name' => $name,
             'email' => $email,
-            'password' => Hash::make($password),
-            'profile_photo_path' => $current_photo,
+            'password' => Hash::make($password)
         ]);
+    }
+    /**
+     * This function creates a user
+     */
+    public static function getUser($search, $sortBy, $sortDirection, $perPage)
+    {
+        return User::orderBy($sortBy, $sortDirection)
+        ->search($search)
+        ->Paginate($perPage);
     }
 }

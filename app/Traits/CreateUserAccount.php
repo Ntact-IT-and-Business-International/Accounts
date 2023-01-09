@@ -10,13 +10,12 @@ trait CreateUserAccount
     /**
      * this function creates a user
      */
-    public static function createAccount($name, $email,$password, $current_photo)
+    public static function createAccount($name, $email,$password)
     {
         User::create([
             'name' => $name,
             'email' => $email,
-            'password' => Hash::make($password),
-            'profile_photo_path' => $current_photo,
+            'password' => Hash::make($password)
         ]);
     }
 }

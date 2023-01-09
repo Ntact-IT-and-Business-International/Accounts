@@ -82,4 +82,10 @@ class Expense extends Model
     public static function totalExpenses(){
     return Expense::sum('expense_amount');
     }
+    /**
+     * This function gets total expenses this month
+     */
+    public static function monthlyTotalExpenses(){
+        return Expense::whereMonth('date',Carbon::now()->month)->sum('expense_amount');
+        }
 }
