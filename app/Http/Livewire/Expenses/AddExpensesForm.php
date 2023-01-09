@@ -6,6 +6,7 @@ use Livewire\Component;
 use Modules\Expenses\Entities\Expense;
 use LivewireUI\Modal\ModalComponent;
 use Session;
+use Modules\Items\Entities\Item;
 
 class AddExpensesForm extends ModalComponent
 {
@@ -25,7 +26,9 @@ class AddExpensesForm extends ModalComponent
 
     public function render()
     {
-        return view('livewire.expenses.add-expenses-form');
+        return view('livewire.expenses.add-expenses-form',[
+            'items'=>Item::selectItem()
+        ]);
     }
     /**
      * Validate the expenses

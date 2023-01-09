@@ -4,6 +4,7 @@ namespace Modules\Expenses\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 
 class Expense extends Model
 {
@@ -25,7 +26,7 @@ class Expense extends Model
         ->Orwhere('expense_amount', 'like', '%'.$val.'%')
         ->Orwhere('name_of_person_or_company', 'like', '%'.$val.'%')
         ->Orwhere('date', 'like', '%'.$val.'%')
-        ->Orwhere('created_by', 'like', '%'.$val.'%');
+        ->Orwhere('expenses.created_by', 'like', '%'.$val.'%');
     }
     /**
      * This function adds Expense details
@@ -46,7 +47,7 @@ class Expense extends Model
     {
         return Expense::join('items','items.id','expenses.item_id')->search($search)
         ->orderBy($sortBy, $sortDirection)
-        ->paginate($perPage);
+        ->paginate($perPage,['expenses.*','items.item_name']);
     }
     /**
      * This function gets the form for editing Expenses information
@@ -59,7 +60,7 @@ class Expense extends Model
     /**
      * This function updates the edited Expenses Information
      */
-    public static function updateExpense($item_id,$expense_amount,$name_of_person_or_company,$date)
+    public static function updateExpense($expenses_id,$item_id,$expense_amount,$name_of_person_or_company,$date)
     {
         Expense::whereId($expenses_id)->update([
             'item_id' => $item_id,
@@ -68,5 +69,17 @@ class Expense extends Model
             'date'=>$date,
             'created_by' => auth()->user()->id,
         ]);
+    }
+    /**
+     * This function  gets total for todays expenses
+     */
+    public static function todaysTotal(){
+        return Expense::whereDate('date',Carbon::today())->sum('expense_amount');
+    }
+    /**
+     * This function gets total expenses
+     */
+    public static function totalExpenses(){
+    return Expense::sum('expense_amount');
     }
 }

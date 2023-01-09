@@ -22,7 +22,7 @@ class Income extends Component
     public function render()
     {
         return view('livewire.income.income',[
-            'income' =>Income::getIncome($this->search, $this->sortBy, $this->sortDirection, $ths->perPage)
+            'income' =>IncomeReceived::getIncome($this->search, $this->sortBy, $this->sortDirection, $this->perPage)
         ]);
     }
     /**
@@ -30,7 +30,7 @@ class Income extends Component
      */
     public static function deleteIncome($income_id)
     {
-        Income::whereId($income_id)->delete();
+        IncomeReceived::whereId($income_id)->delete();
         session()->flash('success', 'Operation Successful');
     }
 }

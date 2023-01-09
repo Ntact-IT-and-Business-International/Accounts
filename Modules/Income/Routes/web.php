@@ -12,5 +12,6 @@
 */
 
 Route::prefix('income')->group(function() {
-    Route::get('/', 'IncomeController@index');
+    Route::get('/income', 'IncomeController@index')->name('Income');
+    Route::get('/edit-income/{income_id}', 'IncomeController@editIncome')->name('EditIncome');
 });

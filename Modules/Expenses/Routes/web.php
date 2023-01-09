@@ -12,5 +12,6 @@
 */
 
 Route::prefix('expenses')->group(function() {
-    Route::get('/', 'ExpensesController@index');
+    Route::get('/expenses', 'ExpensesController@index')->name('Expenses');
+    Route::get('/edit-expenses/{expenses_id}', 'ExpensesController@editExpenses')->name('EditExpenses');
 });

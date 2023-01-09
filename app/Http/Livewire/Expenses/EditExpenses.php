@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Expenses;
 use Livewire\Component;
 use Modules\Expenses\Entities\Expense;
 use Sessions;
+use Modules\Items\Entities\Item;
 
 class EditExpenses extends Component
 {
@@ -25,7 +26,9 @@ class EditExpenses extends Component
 
     public function render()
     {
-        return view('livewire.expenses.edit-expenses');
+        return view('livewire.expenses.edit-expenses',[
+            'items'=>Item::selectItem()
+        ]);
     }
     /**
      * This function displays Expenses Information to be edited
@@ -45,6 +48,6 @@ class EditExpenses extends Component
     public function updateExpenses(){
         $this->validate();
         Expense::updateExpense($this->expenses_id,$this->item_id,$this->expense_amount,$this->name_of_person_or_company,$this->date);
-        return redirect()->to('expenses/expenses')->with('msg', 'Operation Successful');
+        return redirect()->to('/expenses/expenses')->with('msg', 'Operation Successful');
     }
 }

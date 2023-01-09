@@ -15,7 +15,7 @@ class AddItemsForm extends ModalComponent
      * This function validates Item
      */
     protected $rules =[
-        'item_name' => 'required',
+        'item_name' => 'required | unique:items',
     ];
 
     public function render()

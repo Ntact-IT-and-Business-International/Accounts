@@ -4,6 +4,7 @@ namespace Modules\Income\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 
 class Income extends Model
 {
@@ -62,5 +63,17 @@ class Income extends Model
             'source_of_income' => $source_of_income,
             'created_by' => auth()->user()->id
         ]);
+    }
+    /**
+     * This function  gets total for todays income
+     */
+    public static function todaysTotalIncome(){
+        return Income::whereDate('created_at',Carbon::today())->sum('amount');
+    }
+    /**
+     * This function gets total expenses
+     */
+    public static function totalIncome(){
+    return Income::sum('amount');
     }
 }

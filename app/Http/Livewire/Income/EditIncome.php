@@ -43,6 +43,6 @@ class EditIncome extends Component
     {
         $this->validate();
         Income::updateIncome($this->income_id, $this->amount,$this->source_of_income);
-        return redirect()->to('income/income')->with('msg', 'Operation Successful');
+        return redirect()->to('/income/income')->with('msg', 'Operation Successful');
     }
 }

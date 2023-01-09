@@ -38,6 +38,6 @@ class EditItems extends Component
     {
         $this->validate();
         Item::updateItem($this->item_id, $this->item_name);
-        return redirect()->to('item/items')->with('msg', 'Operation Successful');
+        return redirect()->to('/items/items')->with('msg', 'Operation Successful');
     }
 }
