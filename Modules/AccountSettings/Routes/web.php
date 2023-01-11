@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::prefix('accountsettings')->group(function() {
+Route::group(['prefix' => 'accountsettings', 'middleware' => ['auth']], function () {
     Route::get('/', 'AccountSettingsController@index')->name('Users');
 });

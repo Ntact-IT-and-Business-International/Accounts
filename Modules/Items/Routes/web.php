@@ -10,8 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::prefix('items')->group(function() {
+Route::group(['prefix' => 'items', 'middleware' => ['auth']], function () {
     Route::get('/items', 'ItemsController@index')->name('Items');
     Route::get('/edit-item/{item_id}','ItemsController@editItem')->name('EditItem');
 });
