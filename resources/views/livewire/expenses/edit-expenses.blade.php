@@ -29,8 +29,9 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                <button type="submit" class="btn btn-primary text-white"> Update Expenses</button>
-                <div wire:loading wire:target="updateExpenses" class="text-success">Wait We are Saving Your Data...</div>
+                    <button type="submit" class="btn btn-primary text-white"> Update Expenses</button>
+                    <div wire:loading wire:target="updateExpenses" class="text-success">Wait We are Saving Your Data...</div>
+                </div>
             </div>
         </div>
     </form>
