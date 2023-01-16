@@ -54,10 +54,10 @@
             {{$all_items->links()}}
         </div>
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="text-right col-sm-12 mb-2">
             <button class="btn btn-sm btn-info mb-2" onclick="Livewire.emit('openModal', 'items.add-items-form')">Add Item (s)</button>
                 
         </div>
-    </div>
+    </div> --}}
 </div>

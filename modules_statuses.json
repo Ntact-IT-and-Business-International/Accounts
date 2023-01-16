@@ -2,5 +2,6 @@
     "Income": true,
     "Expenses": true,
     "Items": true,
-    "AccountSettings": true
+    "AccountSettings": true,
+    "Purchase": true
 }

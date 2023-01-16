@@ -16,7 +16,7 @@ use App\Http\Controllers\LogoutController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('Welcome To IGS');
 
 Route::middleware([
     'auth:sanctum',
