@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
-            $table->string('amount');
+            $table->float('amount');
             $table->string('source_of_income');
             $table->foreignId('created_by');
             $table->timestamps();
