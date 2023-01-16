@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_of_item');
             $table->string('quantity');
-            $table->string('unit_price');
+            $table->float('unit_price');
             $table->foreignId('created_by');
             $table->timestamps();
         });
