@@ -6,12 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Carbon\Carbon;
 
+/**
+ * @method static whereMonth(string $string, int $month)
+ * @method static create(array $array)
+ * @method static join(string $string, string $string1, string $string2)
+ * @method static whereId($expenses_id)
+ * @method static whereDate(string $string, Carbon $today)
+ * @method static sum(string $string)
+ */
 class Expense extends Model
 {
     use HasFactory;
 
     protected $fillable = ['item_id','expense_amount','name_of_person_or_company','date','created_by'];
-    
+
     protected static function newFactory()
     {
         return \Modules\Expenses\Database\factories\ExpenseFactory::new();
@@ -80,12 +88,12 @@ class Expense extends Model
      * This function gets total expenses
      */
     public static function totalExpenses(){
-    return Expense::sum('expense_amount');
+        return Expense::sum('expense_amount');
     }
     /**
      * This function gets total expenses this month
      */
     public static function monthlyTotalExpenses(){
-        return Expense::whereMonth('date',Carbon::now()->month)->sum('expense_amount');
-        }
+        return Expense::whereMonth('date',Carbon::now('m'))->sum('expense_amount');
+    }
 }

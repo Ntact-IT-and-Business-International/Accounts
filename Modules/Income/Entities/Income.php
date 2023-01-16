@@ -11,7 +11,7 @@ class Income extends Model
     use HasFactory;
 
     protected $fillable = ['amount','source_of_income','created_by'];
-    
+
     protected static function newFactory()
     {
         return \Modules\Income\Database\factories\IncomeFactory::new();
@@ -74,6 +74,6 @@ class Income extends Model
      * This function gets total expenses
      */
     public static function totalIncome(){
-    return Income::sum('amount');
+        return Income::sum('amount');
     }
 }

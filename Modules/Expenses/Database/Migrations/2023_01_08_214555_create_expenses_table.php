@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('item_id');
-            $table->string('expense_amount');
+            $table->float('expense_amount');
             $table->string('name_of_person_or_company');
-            $table->string('date')->comment = 'The exact date of expense';;
+            $table->date('date')->comment = 'The exact date of expense';;
             $table->foreignId('created_by');
             $table->timestamps();
         });
