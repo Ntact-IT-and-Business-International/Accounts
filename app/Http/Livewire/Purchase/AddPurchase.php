@@ -12,6 +12,7 @@ class AddPurchase extends ModalComponent
     public $name_of_item;
     public $quantity;
     public $unit_price;
+    public $date_of_purchase;
     /**
      * Validate income
      */
@@ -19,6 +20,7 @@ class AddPurchase extends ModalComponent
         'name_of_item' =>'required',
         'quantity' =>'required',
         'unit_price' =>'required',
+        'date_of_purchase' =>'required'
     ];
 
     public function render()
@@ -33,7 +35,7 @@ class AddPurchase extends ModalComponent
     public function submit(){
         //validate income
         $this->validate();
-        Purchases::addPurchase($this->name_of_item,$this->quantity,$this->unit_price);
+        Purchases::addPurchase($this->name_of_item,$this->quantity,$this->unit_price,$this->date_of_purchase);
         //Refresh Purchase component
         $this->emit('Purchase.Purchase', 'refreshComponent');
          //closes modal after adding Income

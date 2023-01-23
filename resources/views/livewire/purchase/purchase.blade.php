@@ -37,10 +37,10 @@
                         <th scope="col" wire:click="sortBy('unit_price')"  style="cursor: pointer;">Total Price
                             @include('partials._sort-icon',['field'=>'unit_price'])   
                         </th>
-                        <th scope="col" wire:click="sortBy('created_at')"  style="cursor: pointer;"> Date
-                            @include('partials._sort-icon',['field'=>'created_at'])   
+                        <th scope="col" wire:click="sortBy('date_of_purchase')"  style="cursor: pointer;"> Date
+                            @include('partials._sort-icon',['field'=>'date_of_purchase'])   
                         </th>
-                        <th>Option</th>
+                        {{--<th>Option</th>--}}
                     </tr>
                 </thead>
                 <tbody>
@@ -51,11 +51,11 @@
                         <td style="text-transform: capitalize">{{$purchase->quantity}}</td>
                         <td style="text-transform: capitalize">{{ number_format($purchase->unit_price)}}</td>
                         <td style="text-transform: capitalize">{{ number_format($purchase->unit_price * $purchase->quantity)}}</td>
-                        <td style="text-transform: capitalize">{{$purchase->created_at}}</td>
-                        <td class="text-wrap">
+                        <td style="text-transform: capitalize">{{$purchase->date_of_purchase}}</td>
+                        {{--<td class="text-wrap">
                         <a href="{{URL::signedRoute('EditPurchase', ['purchase_id' =>$purchase->id])}}" class="btn btn-sm btn-info mb-1"> Edit</a>
                         <button wire:click="deletePurchase({{ $purchase->id }})" class=" btn btn-sm btn-danger">Delete</button>
-                    </td>
+                        </td>--}}
                     </tr>
                     @endforeach
                 </tbody>
