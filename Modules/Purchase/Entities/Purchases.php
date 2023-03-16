@@ -9,7 +9,7 @@ class Purchases extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name_of_item','quantity','unit_price','created_by'];
+    protected $fillable = ['name_of_item','quantity','unit_price','date_of_purchase','created_by'];
     
     protected static function newFactory()
     {
@@ -24,16 +24,18 @@ class Purchases extends Model
         ->where('name_of_item', 'like', '%'.$val.'%')
         ->Orwhere('quantity', 'like', '%'.$val.'%')
         ->Orwhere('unit_price', 'like', '%'.$val.'%')
+        ->Orwhere('date_of_purchase', 'like', '%'.$val.'%')
         ->Orwhere('created_by', 'like', '%'.$val.'%');
     }
     /**
      * This function adds Purchase items
      */
-    public static function addPurchase($name_of_item,$quantity,$unit_price){
+    public static function addPurchase($name_of_item,$quantity,$unit_price,$date_of_purchase){
         Purchases::create([
             'name_of_item' => $name_of_item,
             'quantity' => $quantity,
             'unit_price' => $unit_price,
+            'date_of_purchase' => $date_of_purchase,
             'created_by' => auth()->user()->id,
         ]);
     }

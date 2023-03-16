@@ -17,6 +17,11 @@
                 <input type="number" class="form-control" wire:model="unit_price" id="UnitPrice">
                 @error('unit_price') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
+            <div class="form-group">
+                <label for="DateOfPurchase" class="mb-2">Date of Purchase<span style="color:red">*</span></label>
+                <input type="date" class="form-control" wire:model="date_of_purchase" id="DateOfPurchase">
+                @error('date_of_purchase') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
             <div class="row">
                 <div class="col-12 text-center">
                 <button type="submit" class="btn btn-primary text-white"> Add Purchase</button>
