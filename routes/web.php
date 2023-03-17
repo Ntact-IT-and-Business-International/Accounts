@@ -29,4 +29,4 @@ Route::middleware([
 });
 
 Route::get('/logout',[LogoutController::Class,'logoutUser']);
-Route::get('/register',function () {return redirect('/login');});
+//Route::get('/register',function () {return redirect('/login');});
