@@ -10,7 +10,7 @@ class Purchases extends Model
     use HasFactory;
 
     protected $fillable = ['name_of_item','quantity','unit_price','date_of_purchase','created_by'];
-    
+
     protected static function newFactory()
     {
         return \Modules\Purchase\Database\factories\PurchasesFactory::new();
@@ -67,5 +67,9 @@ class Purchases extends Model
             'unit_price' => $unit_price,
             'created_by' => auth()->user()->id
         ]);
+    }
+
+    public static function selectPurchase(){
+        return Purchases::get();
     }
 }

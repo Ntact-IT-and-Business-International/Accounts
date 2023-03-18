@@ -10,7 +10,7 @@
             </select>
         </div>
         <div class="col-sm-7">
-            
+
         </div>
         <div class="col-sm-4 col-lg-4 col-md-4">
             <input wire:model.debounce.300ms="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -26,16 +26,16 @@
                             @include('partials._sort-icon',['field'=>'expenses.id'])
                         </th>
                         <th scope="col" wire:click="sortBy('item_name')"  style="cursor: pointer;">Item
-                            @include('partials._sort-icon',['field'=>'item_name'])   
+                            @include('partials._sort-icon',['field'=>'item_name'])
                         </th>
                         <th scope="col" wire:click="sortBy('expense_amount')"  style="cursor: pointer;">Amount
-                            @include('partials._sort-icon',['field'=>'expense_amount'])   
+                            @include('partials._sort-icon',['field'=>'expense_amount'])
                         </th>
                         <th scope="col" wire:click="sortBy('name_of_person_or_company')"  style="cursor: pointer;">Person | Company
-                            @include('partials._sort-icon',['field'=>'name_of_person_or_company'])   
+                            @include('partials._sort-icon',['field'=>'name_of_person_or_company'])
                         </th>
                         <th scope="col" wire:click="sortBy('date')"  style="cursor: pointer;"> Date
-                            @include('partials._sort-icon',['field'=>'date'])   
+                            @include('partials._sort-icon',['field'=>'date'])
                         </th>
                         <th>Option</th>
                     </tr>
@@ -44,8 +44,8 @@
                     @foreach ($expenses as $i=>$expense)
                     <tr>
                         <th scope="row">{{$expenses->firstitem() + $i}}</th>
-                        <td style="text-transform: capitalize">{{$expense->item_name}}</td>
-                        <td style="text-transform: capitalize">{{ number_format($expense->expense_amount)}}</td>
+                        <td style="text-transform: capitalize">{{$expense->name_of_item}}</td>
+                        <td style="text-transform: capitalize">{{ number_format($expense->expense_amount)}}/=</td>
                         <td style="text-transform: capitalize">{{$expense->name_of_person_or_company}}</td>
                         <td style="text-transform: capitalize">{{$expense->date}}</td>
                         <td class="text-wrap">
@@ -70,7 +70,7 @@
     <div class="row">
         <div class="text-right col-sm-12 mb-2">
             <button class="btn btn-sm btn-info mb-2" onclick="Livewire.emit('openModal', 'expenses.add-expenses-form')">Add expenses (s)</button>
-                
+
         </div>
     </div>
 </div>

@@ -4,13 +4,14 @@ namespace Modules\Items\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Purchase\Entities\Purchases;
 
 class Item extends Model
 {
     use HasFactory;
 
     protected $fillable = ['item_name','created_by'];
-    
+
     protected static function newFactory()
     {
         return \Modules\Items\Database\factories\ItemFactory::new();
@@ -47,7 +48,7 @@ class Item extends Model
      */
     public static function selectItem()
     {
-        return Item::get();
+        return Purchases::selectPurchase();
     }
     /**
      * This function gets the form for editing Item

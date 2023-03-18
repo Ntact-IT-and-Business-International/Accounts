@@ -53,9 +53,9 @@ class Expense extends Model
      */
     public static function getExpenses($search, $sortBy, $sortDirection, $perPage)
     {
-        return Expense::join('items','items.id','expenses.item_id')->search($search)
+        return Expense::join('purchases','purchases.id','expenses.item_id')->search($search)
         ->orderBy($sortBy, $sortDirection)
-        ->paginate($perPage,['expenses.*','items.item_name']);
+        ->paginate($perPage,['expenses.*','purchases.name_of_item']);
     }
     /**
      * This function gets the form for editing Expenses information

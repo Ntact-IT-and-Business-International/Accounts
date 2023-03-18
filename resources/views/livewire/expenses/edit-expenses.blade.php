@@ -7,7 +7,7 @@
                 <select class="form-control form-select" id="ItemId" wire:model="item_id">
                 <option>Select One</option>
                 @foreach($items as $item)
-                    <option value="{{$item->id}}">{{$item->item_name}}</option>
+                    <option value="{{$item->id}}">{{$item->name_of_item}}</option>
                 @endforeach
                 </select>
                 @error('item_id') <span class="text-danger">{{ $message }}</span> @enderror
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label for="Date" class="mb-2">Date<span style="color:red">*</span></label>
-                <input type="text" class="form-control" wire:model="date" id="Date">
+                <input type="date" class="form-control" wire:model="date" id="Date">
                 @error('date') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="row">

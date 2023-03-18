@@ -1,4 +1,4 @@
-<div wire:poll.5s>
+<div wire:poll.0s>
     <div class="row text-right">
         <div class="col-sm-1 mb-2">
             <select class="form-control" id="sel1" wire:model='perPage'>
@@ -9,7 +9,7 @@
             </select>
         </div>
         <div class="col-sm-7">
-            
+
         </div>
         <div class="col-sm-4 col-lg-4 col-md-4">
             <input wire:model.debounce.300ms="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -25,13 +25,13 @@
                             @include('partials._sort-icon',['field'=>'incomes.id'])
                         </th>
                         <th scope="col" wire:click="sortBy('amount')"  style="cursor: pointer;">Amount
-                            @include('partials._sort-icon',['field'=>'amount'])   
+                            @include('partials._sort-icon',['field'=>'amount'])
                         </th>
                         <th scope="col" wire:click="sortBy('source_of_income')"  style="cursor: pointer;">Source of Income
-                            @include('partials._sort-icon',['field'=>'source_of_income'])   
+                            @include('partials._sort-icon',['field'=>'source_of_income'])
                         </th>
                         <th scope="col" wire:click="sortBy('created_at')"  style="cursor: pointer;"> Date
-                            @include('partials._sort-icon',['field'=>'created_at'])   
+                            @include('partials._sort-icon',['field'=>'created_at'])
                         </th>
                         <th>Option</th>
                     </tr>
@@ -65,7 +65,7 @@
     <div class="row">
         <div class="text-right col-sm-12 mb-2">
             <button class="btn btn-sm btn-info mb-2" onclick="Livewire.emit('openModal', 'income.add-income')">Add Income (s)</button>
-                
+
         </div>
     </div>
 </div>

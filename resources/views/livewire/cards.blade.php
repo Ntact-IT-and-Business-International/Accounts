@@ -34,7 +34,7 @@
                                 <div class="col-6 b-r">
                                     <h3 class="font-medium">Expenditures</h3>
                                 </div>
-                                <div class="col-6"> 
+                                <div class="col-6">
                                     <h3 class="font-medium">Ugx :{{number_format($total_expenses)}}</h3>
                                 </div>
                             </div>
