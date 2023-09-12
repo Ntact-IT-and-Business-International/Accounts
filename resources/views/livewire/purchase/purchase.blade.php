@@ -52,10 +52,10 @@
                         <td style="text-transform: capitalize">{{ number_format($purchase->unit_price)}}</td>
                         <td style="text-transform: capitalize">{{ number_format($purchase->unit_price * $purchase->quantity)}}</td>
                         <td style="text-transform: capitalize">{{$purchase->date_of_purchase}}</td>
-                        {{--<td class="text-wrap">
+                        <td class="text-wrap">
                         <a href="{{URL::signedRoute('EditPurchase', ['purchase_id' =>$purchase->id])}}" class="btn btn-sm btn-info mb-1"> Edit</a>
                         <button wire:click="deletePurchase({{ $purchase->id }})" class=" btn btn-sm btn-danger">Delete</button>
-                        </td>--}}
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -1,4 +1,4 @@
 <footer class="footer">
-    © {{ date('Y')}}  IGS Designed by
+    © {{ date('Y')}}  NtactIt Accounts System Designed by
     <a href="#">NTact-Kampala</a>
 </footer>
