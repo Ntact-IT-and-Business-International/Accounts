@@ -27,7 +27,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'user_type',
         'password',
+        'user_type',
     ];
 
     /**
@@ -66,11 +68,12 @@ class User extends Authenticatable
         ->where('name', 'like', '%'.$val.'%')
         ->orWhere('email', 'like', '%'.$val.'%');
     }
-    public static function createAccount($name, $email,$password)
+    public static function createAccount($name, $email,$user_type,$password)
     {
         User::create([
             'name' => $name,
             'email' => $email,
+            'user_type'=>$user_type,
             'password' => Hash::make($password)
         ]);
     }

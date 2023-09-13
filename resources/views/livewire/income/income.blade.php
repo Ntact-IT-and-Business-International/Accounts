@@ -33,7 +33,9 @@
                         <th scope="col" wire:click="sortBy('created_at')"  style="cursor: pointer;"> Date
                             @include('partials._sort-icon',['field'=>'created_at'])
                         </th>
+                        @can('view_income_option')
                         <th>Option</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -43,10 +45,16 @@
                         <td style="text-transform: capitalize">{{ number_format($item->amount)}}</td>
                         <td style="text-transform: capitalize">{{$item->source_of_income}}</td>
                         <td style="text-transform: capitalize">{{$item->created_at}}</td>
-                        <td class="text-wrap">
-                        <a href="{{URL::signedRoute('EditIncome', ['income_id' =>$item->id])}}" class="btn btn-sm btn-info mb-1"> Edit</a>
-                        <button wire:click="deleteIncome({{ $item->id }})" class=" btn btn-sm btn-danger">Delete</button>
-                    </td>
+                        @can('view_income_option')
+                            <td class="text-wrap">
+                            @can('edit_income')
+                                <a href="{{URL::signedRoute('EditIncome', ['income_id' =>$item->id])}}" class="btn btn-sm btn-info mb-1"> Edit</a>
+                            @endcan
+                            @can('delete_income')
+                                <button wire:click="deleteIncome({{ $item->id }})" class=" btn btn-sm btn-danger">Delete</button>
+                            @endcan
+                            </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>
@@ -62,10 +70,12 @@
             {{$income->links()}}
         </div>
     </div>
+    @can('add_income')
     <div class="row">
         <div class="text-right col-sm-12 mb-2">
             <button class="btn btn-sm btn-info mb-2" onclick="Livewire.emit('openModal', 'income.add-income')">Add Income (s)</button>
 
         </div>
     </div>
+    @endcan
 </div>

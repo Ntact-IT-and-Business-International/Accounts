@@ -30,7 +30,9 @@
                         <th scope="col" wire:click="sortBy('email')"  style="cursor: pointer;">Email
                             @include('partials._sort-icon',['field'=>'email'])   
                         </th>
+                        @can('delete_user')
                         <th>Option</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +41,9 @@
                         <th scope="row">{{$users->firstitem() + $i}}</th>
                         <td style="text-transform: capitalize">{{ $user->name}}</td>
                         <td>{{$user->email}}</td>
+                        @can('delete_user')
                         <td><button wire:click="deleteUser({{ $user->id }})" class=" btn btn-sm btn-danger">Delete</button></td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>
