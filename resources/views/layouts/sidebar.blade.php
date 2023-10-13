@@ -9,7 +9,9 @@
                 <li> <a class="waves-effect waves-dark" href="/items/items"><i class="ti-pencil-alt"></i><span class="hide-menu">Items</span></a></li>
                 <li> <a class="waves-effect waves-dark" href="/income/income"><i class="ti-book"></i><span class="hide-menu">Income</span></a></li>
                 <li> <a class="waves-effect waves-dark" href="/expenses/expenses"><i class="ti-layout-grid2"></i><span class="hide-menu">Expenses</span></a></li>
-                <li> <a class="waves-effect waves-dark" href="/accountsettings/"><i class="ti-settings"></i><span class="hide-menu">Create Account</span></a></li>
+                @can('manage_users')
+                    <li> <a class="waves-effect waves-dark" href="/accountsettings/"><i class="ti-settings"></i><span class="hide-menu">Create Account</span></a></li>
+                @endcan
             </ul>
         </nav>
     <!-- End Sidebar navigation -->

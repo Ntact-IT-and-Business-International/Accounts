@@ -37,7 +37,9 @@
                         <th scope="col" wire:click="sortBy('date')"  style="cursor: pointer;"> Date
                             @include('partials._sort-icon',['field'=>'date'])
                         </th>
+                        @can('view_expenses_option')
                         <th>Option</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -48,10 +50,16 @@
                         <td style="text-transform: capitalize">{{ number_format($expense->expense_amount)}}/=</td>
                         <td style="text-transform: capitalize">{{$expense->name_of_person_or_company}}</td>
                         <td style="text-transform: capitalize">{{$expense->date}}</td>
+                        @can('view_expenses_option')
                         <td class="text-wrap">
+                        @can('edit_expenses')
                         <a href="{{URL::signedRoute('EditExpenses', ['expenses_id' =>$expense->id])}}" class="btn btn-sm btn-info mb-1"> Edit</a>
+                        @endcan
+                        @can('delete_expenses')
                         <button wire:click="deleteExpenses({{ $expense->id }})" class=" btn btn-sm btn-danger">Delete</button>
-                    </td>
+                        @endcan
+                        </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>

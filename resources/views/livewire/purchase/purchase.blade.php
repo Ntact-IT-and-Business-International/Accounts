@@ -40,7 +40,9 @@
                         <th scope="col" wire:click="sortBy('date_of_purchase')"  style="cursor: pointer;"> Date
                             @include('partials._sort-icon',['field'=>'date_of_purchase'])
                         </th>
-                        {{--<th>Option</th>--}}
+                        @can('view_purchase_option')
+                        <th>Option</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -52,10 +54,16 @@
                         <td style="text-transform: capitalize">{{ number_format($purchase->unit_price)}}</td>
                         <td style="text-transform: capitalize">{{ number_format($purchase->unit_price * $purchase->quantity)}}</td>
                         <td style="text-transform: capitalize">{{$purchase->date_of_purchase}}</td>
-                        {{--<td class="text-wrap">
+                        @can('view_purchase_option')
+                        <td class="text-wrap">
+                        @can('edit_purchase')
                         <a href="{{URL::signedRoute('EditPurchase', ['purchase_id' =>$purchase->id])}}" class="btn btn-sm btn-info mb-1"> Edit</a>
-                        <button wire:click="deletePurchase({{ $purchase->id }})" class=" btn btn-sm btn-danger">Delete</button>
-                        </td>--}}
+                        @endcan
+                        @can('delete_purchase')
+                            <button wire:click="deletePurchase({{ $purchase->id }})" class=" btn btn-sm btn-danger">Delete</button>
+                        @endcan
+                        </td>
+                        @endcan
                     </tr>
                     @endforeach
                 </tbody>
@@ -71,10 +79,12 @@
             {{$purchases->links()}}
         </div>
     </div>
+    @can('add_purchase')
     <div class="row">
         <div class="text-right col-sm-12 mb-2">
             <button class="btn btn-sm btn-info mb-2" onclick="Livewire.emit('openModal', 'purchase.add-purchase')">Add Purchase (s)</button>
 
         </div>
     </div>
+    @endcan
 </div>

@@ -11,5 +11,5 @@
 |
 */
 Route::group(['prefix' => 'accountsettings', 'middleware' => ['auth']], function () {
-    Route::get('/', 'AccountSettingsController@index')->name('Users');
+    Route::get('/', 'AccountSettingsController@index')->name('Users')->middleware('can:manage_users');
 });

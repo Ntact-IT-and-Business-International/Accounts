@@ -28,7 +28,7 @@ class Expenses extends Component
     /**
      * This function deletes the Expense
      */
-    public static function deleteExpense($expenses_id)
+    public static function deleteExpenses($expenses_id)
     {
         Expense::whereId($expenses_id)->delete();
         session()->flash('success', 'Operation Successful');

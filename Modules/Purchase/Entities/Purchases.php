@@ -1,6 +1,8 @@
 <?php
 
 namespace Modules\Purchase\Entities;
+use Carbon\Carbon;
+use DB;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -71,5 +73,18 @@ class Purchases extends Model
 
     public static function selectPurchase(){
         return Purchases::get();
+    }
+    /**
+     * This function  gets total for todays purchase
+     */
+    public static function todaysPurchaseTotal(){
+        return Purchases::whereDate('date_of_purchase', Carbon::today())
+        ->sum(DB::raw('unit_price * quantity'));
+    }
+    /**
+     * This function gets total purchases
+     */
+    public static function totalPurchases(){
+        return Purchases::sum(DB::raw('unit_price * quantity'));
     }
 }
