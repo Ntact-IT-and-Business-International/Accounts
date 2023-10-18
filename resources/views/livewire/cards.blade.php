@@ -53,10 +53,10 @@
                             <div class="soc-header box-google"></div>
                             <div class="soc-content">
                                 <div class="col-6 b-r">
-                                    <h3 class="font-medium">Total Revenue</h3>
+                                    <h3 class="font-medium">Available Revenue</h3>
                                 </div>
                                 <div class="col-6">
-                                    <h3 class="font-medium">Ugx :{{number_format($total_income - $total_expenditure)}}</h3>
+                                    <h3 class="font-medium">Ugx :{{number_format($generated_revenue - $total_expenditure)}}</h3>
                                 </div>
                             </div>
                         </div>

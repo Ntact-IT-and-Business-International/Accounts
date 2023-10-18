@@ -62,7 +62,7 @@ class SoldItem extends Model
 
         return $soldItems->sum(function ($item) {
             $buyingPrice = Purchases::itemBuyingPrice($item->item_id);
-            return $item->selling_price - $buyingPrice;
+            return ($item->selling_price - $buyingPrice) * $item->quantity_sold;
         });
     }
 
@@ -72,7 +72,7 @@ class SoldItem extends Model
 
         return $soldItems->sum(function ($item) {
             $buyingPrice = Purchases::itemBuyingPrice($item->item_id);
-            return $item->selling_price - $buyingPrice;
+            return ($item->selling_price - $buyingPrice) * $item->quantity_sold;
         });
     }
 
@@ -89,9 +89,11 @@ class SoldItem extends Model
 
         return $soldItems->sum(function ($item) {
             $buyingPrice = Purchases::itemBuyingPrice($item->item_id);
-            return $item->selling_price - $buyingPrice;
+            return ($item->selling_price - $buyingPrice) * $item->quantity_sold;
         });
     }
 
-//    public static function
+    public static function getMonthlyRevenue(){
+        return self::whereMonth('created_at', Carbon::now()->format('m'))->sum(DB::raw('(selling_price::numeric) * quantity_sold'));
+    }
 }
