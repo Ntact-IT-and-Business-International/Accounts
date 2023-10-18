@@ -2,18 +2,29 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Modules\Expenses\Entities\Expense;
 use Modules\Income\Entities\Income;
+use Modules\Purchase\Entities\Purchases;
+use Modules\Revenue\Entities\Revenue;
+use Modules\SoldItems\Entities\SoldItem;
 
 class Cards extends Component
 {
-    public function render()
+    public function render(): Factory|View|Application
     {
         return view('livewire.cards',[
             'total_income' =>Income::totalIncome(),
-            'total_expenses' =>Expense::totalExpenses(),
-            'monthly_expenses' =>Expense::monthlyTotalExpenses()
+            'total_expenditure' =>Expense::totalExpenses(),
+            'monthly_expenditure' =>Expense::monthlyTotalExpenses(),
+            'monthly_revenue' =>Revenue::getMonthlyRevenue(),
+            'generated_revenue' =>Revenue::getTotalRevenue(),
+            'monthly_purchases' =>Purchases::monthlyPurchases(),
+            'profits_made' =>SoldItem::calculateProfits(),
+            'monthly_profits_made' =>SoldItem::calculateMonthlyProfits(),
         ]);
     }
 }

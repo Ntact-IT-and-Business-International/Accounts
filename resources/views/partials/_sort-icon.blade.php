@@ -1,7 +1,8 @@
 @if($sortBy !== $field)
-<i class="text-muted fa fa-sort"></i>
+    <i class="text-muted ti-arrow-up"></i>
+    <i class="ti-arrow-down"></i>
 @elseif($sortDirection == 'asc')
-<i class="color:rgbs(38, 38, 236, 0.774)" class="fa fa-sort-up"></i>
-@else 
-<i class="color:rgbs(38, 38, 236, 0.774)" class="fa fa-sort-down"></i>
+    <i class="color:rgbs(38, 38, 236, 0.774) ti-arrow-up"></i>
+@else
+    <i class="color:rgbs(38, 38, 236, 0.774) ti-arrow-down"></i>
 @endif

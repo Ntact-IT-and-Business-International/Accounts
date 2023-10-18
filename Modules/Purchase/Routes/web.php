@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::group(['prefix' => 'purchase', 'middleware' => ['auth']], function () {
     Route::get('/purchases', 'PurchaseController@index')->name('Purchase');
     Route::get('/edit-purchase/{purchase_id}', 'PurchaseController@editPurchase')->name('EditPurchase');

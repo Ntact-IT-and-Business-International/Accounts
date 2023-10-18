@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->string('name_of_item');
+            $table->foreignId('item_id');
             $table->string('quantity');
             $table->float('unit_price');
             $table->string('date_of_purchase');

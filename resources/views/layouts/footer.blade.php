@@ -1,4 +1,4 @@
 <footer class="footer">
-    © {{ date('Y')}}  NtactIt Accounts System Designed by
-    <a href="#">NTact-Kampala</a>
+    © {{ date('Y')}}
+    <a href="#">Ela Pool Table and Bar Center</a>
 </footer>

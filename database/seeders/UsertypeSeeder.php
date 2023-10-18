@@ -15,18 +15,17 @@ class UsertypeSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['Director1','Director2','Tech','Salesperson','Receptionist','Cleaner'
-            ];
+        $types = ['Admin','Shop Keeper'];
             for($i=0; $i < count($types); $i++){
-            $type = new UserType();
-            if(UserType::where("id",$i)->exists()){
-            $type->id = $i+1;
-            }
-            else{
-            $type->id = $i;
-            } 
-            $type->type=$types[$i];
-            $type->save();
+                $type = new UserType();
+                if(UserType::whereId($i)->exists()){
+                    $type->id = $i+1;
+                }
+                else{
+                    $type->id = $i;
+                }
+                $type->type=$types[$i];
+                 $type->save();
         }
     }
 }

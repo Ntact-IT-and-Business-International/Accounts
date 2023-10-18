@@ -2,5 +2,5 @@
 
 @section('content')
 @livewire('purchase.purchase-cards')
-    @livewire('purchase.purchase')
+@livewire('purchase.purchase')
 @endsection

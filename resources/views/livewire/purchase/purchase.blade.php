@@ -25,8 +25,8 @@
                         <th scope="col" wire:click="sortBy('purchases.id')" style="cursor: pointer;">#
                             @include('partials._sort-icon',['field'=>'purchases.id'])
                         </th>
-                        <th scope="col" wire:click="sortBy('name_of_item')"  style="cursor: pointer;">Name of Item
-                            @include('partials._sort-icon',['field'=>'name_of_item'])
+                        <th scope="col" wire:click="sortBy('item_id')"  style="cursor: pointer;">Name of Item
+                            @include('partials._sort-icon',['field'=>'item_id'])
                         </th>
                         <th scope="col" wire:click="sortBy('quantity')"  style="cursor: pointer;">Quantity
                             @include('partials._sort-icon',['field'=>'quantity'])
@@ -37,7 +37,7 @@
                         <th scope="col" wire:click="sortBy('unit_price')"  style="cursor: pointer;">Total Price
                             @include('partials._sort-icon',['field'=>'unit_price'])
                         </th>
-                        <th scope="col" wire:click="sortBy('date_of_purchase')"  style="cursor: pointer;"> Date
+                        <th scope="col" wire:click="sortBy('date_of_purchase')"  style="cursor: pointer;"> Date Of Purchase
                             @include('partials._sort-icon',['field'=>'date_of_purchase'])
                         </th>
                         @can('view_purchase_option')
@@ -49,7 +49,7 @@
                     @foreach ($purchases as $i=>$purchase)
                     <tr>
                         <th scope="row">{{$purchases->firstitem() + $i}}</th>
-                        <td style="text-transform: capitalize">{{$purchase->name_of_item}}</td>
+                        <td style="text-transform: capitalize">{{$purchase->items->item_name}}</td>
                         <td style="text-transform: capitalize">{{$purchase->quantity}}</td>
                         <td style="text-transform: capitalize">{{ number_format($purchase->unit_price)}}</td>
                         <td style="text-transform: capitalize">{{ number_format($purchase->unit_price * $purchase->quantity)}}</td>
@@ -57,7 +57,7 @@
                         @can('view_purchase_option')
                         <td class="text-wrap">
                         @can('edit_purchase')
-                        <a href="{{URL::signedRoute('EditPurchase', ['purchase_id' =>$purchase->id])}}" class="btn btn-sm btn-info mb-1"> Edit</a>
+                            <a href="{{URL::signedRoute('EditPurchase', ['purchase_id' =>$purchase->id])}}" class="btn btn-sm btn-info mb-1"> Edit</a>
                         @endcan
                         @can('delete_purchase')
                             <button wire:click="deletePurchase({{ $purchase->id }})" class=" btn btn-sm btn-danger">Delete</button>
@@ -79,11 +79,10 @@
             {{$purchases->links()}}
         </div>
     </div>
-    @can('add_purchase')
+    @can('add_purchased_items')
     <div class="row">
         <div class="text-right col-sm-12 mb-2">
             <button class="btn btn-sm btn-info mb-2" onclick="Livewire.emit('openModal', 'purchase.add-purchase')">Add Purchase (s)</button>
-
         </div>
     </div>
     @endcan

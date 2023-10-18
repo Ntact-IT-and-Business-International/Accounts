@@ -14,8 +14,8 @@ class AccountSettingsController extends Controller
      */
     public function index()
     {
-        if ($request->user()->cannot('create_users')){
-        abort(403);
+        if (request()->user()->cannot('create_users')){
+            abort(403);
         }
         return view('accountsettings::index');
     }

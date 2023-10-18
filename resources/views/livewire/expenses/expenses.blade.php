@@ -46,17 +46,17 @@
                     @foreach ($expenses as $i=>$expense)
                     <tr>
                         <th scope="row">{{$expenses->firstitem() + $i}}</th>
-                        <td style="text-transform: capitalize">{{$expense->name_of_item}}</td>
-                        <td style="text-transform: capitalize">{{ number_format($expense->expense_amount)}}/=</td>
+                        <td style="text-transform: capitalize">{{@$expense->items->item_name}}</td>
+                        <td style="text-transform: capitalize">{{number_format($expense->expense_amount)}}/=</td>
                         <td style="text-transform: capitalize">{{$expense->name_of_person_or_company}}</td>
                         <td style="text-transform: capitalize">{{$expense->date}}</td>
                         @can('view_expenses_option')
-                        <td class="text-wrap">
+                            <td class="text-wrap">
                         @can('edit_expenses')
-                        <a href="{{URL::signedRoute('EditExpenses', ['expenses_id' =>$expense->id])}}" class="btn btn-sm btn-info mb-1"> Edit</a>
+                            <a href="{{URL::signedRoute('EditExpenses', ['expenses_id' =>$expense->id])}}" class="btn btn-sm btn-info mb-1"> Edit</a>
                         @endcan
                         @can('delete_expenses')
-                        <button wire:click="deleteExpenses({{ $expense->id }})" class=" btn btn-sm btn-danger">Delete</button>
+                            <button wire:click="deleteExpenses({{ $expense->id }})" class=" btn btn-sm btn-danger">Delete</button>
                         @endcan
                         </td>
                         @endcan
@@ -75,10 +75,11 @@
             {{$expenses->links()}}
         </div>
     </div>
+    @can('add_expenses')
     <div class="row">
         <div class="text-right col-sm-12 mb-2">
             <button class="btn btn-sm btn-info mb-2" onclick="Livewire.emit('openModal', 'expenses.add-expenses-form')">Add expenses (s)</button>
-
         </div>
     </div>
+    @endcan
 </div>

@@ -13,8 +13,8 @@ class Expenses extends Component
 
     protected $listeners = ['Expenses' => '$refresh'];
 
-    //over ridding sortby from the trait
-    public $sortBy = 'expenses.id';
+    //over ridding sort by from the trait
+    public $sortBy = 'id';
 
     //using the bootstrap pagination theme
     protected $paginationTheme = 'bootstrap';

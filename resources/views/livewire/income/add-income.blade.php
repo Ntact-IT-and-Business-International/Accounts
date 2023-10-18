@@ -8,9 +8,19 @@
                 @error('amount') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
+                <label for="Amount" class="mb-2">Reason<span style="color:red">*</span></label>
+                <input type="text" class="form-control" wire:model="income_reason" id="reason">
+                @error('income_reason') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
                 <label for="SourceOfIncome" class="mb-2">Source of Income<span style="color:red">*</span></label>
                 <input type="text" class="form-control" wire:model="source_of_income" id="SourceOfIncome">
                 @error('source_of_income') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
+                <label for="SourceOfIncome" class="mb-2">Date Of Income<span style="color:red">*</span></label>
+                <input type="datetime-local" class="form-control" wire:model="date" id="SourceOfIncome">
+                @error('date') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="row">
                 <div class="col-12 text-center">

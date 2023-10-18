@@ -11,12 +11,14 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
             $table->float('amount');
             $table->string('source_of_income');
+            $table->text('income_reason');
+            $table->dateTime('date');
             $table->foreignId('created_by');
             $table->timestamps();
         });
@@ -27,7 +29,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('incomes');
     }

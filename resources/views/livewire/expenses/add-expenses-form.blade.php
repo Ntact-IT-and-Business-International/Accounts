@@ -7,7 +7,7 @@
                 <select class="form-control form-select" id="ItemId" wire:model="item_id">
                 <option>Select One</option>
                 @foreach($items as $item)
-                    <option value="{{$item->id}}">{{$item->name_of_item}}</option>
+                    <option value="{{$item->id}}">{{$item->item_name}}</option>
                 @endforeach
                 </select>
                 @error('item_id') <span class="text-danger">{{ $message }}</span> @enderror

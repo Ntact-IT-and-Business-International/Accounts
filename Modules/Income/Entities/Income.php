@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Carbon\Carbon;
 
+/**
+ * @method static create(array $array)
+ * @method static whereDate(string $string, Carbon $today)
+ * @method static sum(string $string)
+ */
 class Income extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['amount','source_of_income','created_by'];
+    protected $fillable = ['amount','source_of_income','created_by','income_reason','date'];
 
     protected static function newFactory()
     {
@@ -29,11 +34,13 @@ class Income extends Model
     /**
      * This function adds Income details
      */
-    public static function addIncome($amount,$source_of_income){
-        Income::create([
+    public static function addIncome($amount,$source_of_income,$income_reason, $date){
+        self::create([
             'amount' => $amount,
             'source_of_income' =>$source_of_income,
+            'income_reason' =>$income_reason,
             'created_by' => auth()->user()->id,
+            'date' => $date,
         ]);
     }
     /**
@@ -41,7 +48,7 @@ class Income extends Model
      */
     public static function getIncome($search, $sortBy, $sortDirection, $perPage)
     {
-        return Income::search($search)
+        return self::search($search)
         ->orderBy($sortBy, $sortDirection)
         ->paginate($perPage);
     }
@@ -50,7 +57,7 @@ class Income extends Model
      */
     public static function editIncome($income_id)
     {
-        return Income::whereId($income_id)->get();
+        return self::whereId($income_id)->get();
     }
 
     /**
@@ -58,7 +65,7 @@ class Income extends Model
      */
     public static function updateIncome($income_id, $amount,$source_of_income)
     {
-        Income::whereId($income_id)->update([
+        self::whereId($income_id)->update([
             'amount' => $amount,
             'source_of_income' => $source_of_income,
             'created_by' => auth()->user()->id
@@ -68,12 +75,13 @@ class Income extends Model
      * This function  gets total for todays income
      */
     public static function todaysTotalIncome(){
-        return Income::whereDate('created_at',Carbon::today())->sum('amount');
+        return self::whereDate('date',Carbon::today())->sum('amount');
     }
+
     /**
      * This function gets total expenses
      */
     public static function totalIncome(){
-        return Income::sum('amount');
+        return self::sum('amount');
     }
 }

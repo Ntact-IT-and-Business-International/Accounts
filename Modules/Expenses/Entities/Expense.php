@@ -5,6 +5,8 @@ namespace Modules\Expenses\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Modules\Items\Entities\Item;
 
 /**
  * @method static whereMonth(string $string, int $month)
@@ -23,6 +25,11 @@ class Expense extends Model
     protected static function newFactory()
     {
         return \Modules\Expenses\Database\factories\ExpenseFactory::new();
+    }
+
+    public function items()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
     }
     /**
      * This function searches by any of this fields
@@ -53,9 +60,9 @@ class Expense extends Model
      */
     public static function getExpenses($search, $sortBy, $sortDirection, $perPage)
     {
-        return Expense::join('purchases','purchases.id','expenses.item_id')->search($search)
+        return self::with('items')->search($search)
         ->orderBy($sortBy, $sortDirection)
-        ->paginate($perPage,['expenses.*','purchases.name_of_item']);
+        ->paginate($perPage);
     }
     /**
      * This function gets the form for editing Expenses information

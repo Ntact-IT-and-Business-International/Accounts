@@ -4,8 +4,14 @@ namespace Modules\Items\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\Purchase\Entities\Purchases;
 
+/**
+ * @method static whereId($item_id)
+ * @method static get()
+ * @method static withCount(string $string)
+ */
 class Item extends Model
 {
     use HasFactory;
@@ -25,6 +31,11 @@ class Item extends Model
         ->where('item_name', 'like', '%'.$val.'%')
         ->Orwhere('created_by', 'like', '%'.$val.'%');
     }
+
+    public function purchase()
+    {
+        return $this->hasMany(Purchases::class);
+    }
     /**
      * This function adds items
      */
@@ -39,7 +50,7 @@ class Item extends Model
      */
     public static function getItems($search, $sortBy, $sortDirection, $perPage)
     {
-        return Item::search($search)
+        return self::withCount('purchase')->search($search)
         ->orderBy($sortBy, $sortDirection)
         ->paginate($perPage);
     }
@@ -48,14 +59,14 @@ class Item extends Model
      */
     public static function selectItem()
     {
-        return Purchases::selectPurchase();
+        return self::get();
     }
     /**
      * This function gets the form for editing Item
      */
     public static function editItem($item_id)
     {
-        return Item::whereId($item_id)->get();
+        return self::whereId($item_id)->get();
     }
 
     /**
@@ -63,7 +74,7 @@ class Item extends Model
      */
     public static function updateItem($item_id, $item_name)
     {
-        Item::whereId($item_id)->update([
+        self::whereId($item_id)->update([
             'item_name' => $item_name,
             'created_by' => auth()->user()->id
         ]);

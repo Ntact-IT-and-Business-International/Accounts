@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Purchase;
 
 use Livewire\Component;
+use Modules\Items\Entities\Item;
 use Modules\Purchase\Entities\Purchases;
 use Session;
 
@@ -31,7 +32,7 @@ class EditPurchase extends Component
     public function mount($purchase_id)
     {
         $this->fill([
-            'name_of_item' => Purchases::whereId($this->purchase_id)->value('name_of_item'),
+            'name_of_item' => Item::whereId(Purchases::whereId($this->purchase_id)->value('item_id'))->value('item_name'),
             'quantity' => Purchases::whereId($this->purchase_id)->value('quantity'),
             'unit_price' => Purchases::whereId($this->purchase_id)->value('unit_price'),
         ]);
@@ -44,7 +45,7 @@ class EditPurchase extends Component
     public function updatePurchase()
     {
         $this->validate();
-        Purchases::updatePurchase($this->purchase_id, $this->name_of_item,$this->quantity,$this->unit_price,);
+        Purchases::updatePurchase($this->purchase_id, $this->quantity,$this->unit_price,);
         return redirect()->to('/purchase/purchases')->with('msg', 'Operation Successful');
     }
 }

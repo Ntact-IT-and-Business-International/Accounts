@@ -11,12 +11,16 @@ class AddIncome extends ModalComponent
 {
     public $amount;
     public $source_of_income;
+    public $income_reason;
+    public $date;
     /**
      * Validate income
      */
     protected $rules=[
         'amount' =>'required',
         'source_of_income' =>'required',
+        'income_reason' => 'required',
+        'date' => 'required'
     ];
 
     public function render()
@@ -30,7 +34,7 @@ class AddIncome extends ModalComponent
     public function submit(){
         //validate income
         $this->validate();
-        Income::addIncome($this->amount,$this->source_of_income);
+        Income::addIncome($this->amount,$this->source_of_income, $this->income_reason, $this->date);
         //Refresh Income component
         $this->emit('Income.Income', 'refreshComponent');
          //closes modal after adding Income

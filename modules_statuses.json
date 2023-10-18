@@ -3,5 +3,7 @@
     "Expenses": true,
     "Items": true,
     "AccountSettings": true,
-    "Purchase": true
+    "Purchase": true,
+    "Revenue": true,
+    "SoldItems": true
 }

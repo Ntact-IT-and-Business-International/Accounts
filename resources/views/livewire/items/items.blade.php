@@ -9,7 +9,7 @@
             </select>
         </div>
         <div class="col-sm-7">
-            
+
         </div>
         <div class="col-sm-4 col-lg-4 col-md-4">
             <input wire:model.debounce.300ms="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
@@ -25,7 +25,10 @@
                             @include('partials._sort-icon',['field'=>'items.id'])
                         </th>
                         <th scope="col" wire:click="sortBy('item_name')"  style="cursor: pointer;">Item Name
-                            @include('partials._sort-icon',['field'=>'item_name'])   
+                            @include('partials._sort-icon',['field'=>'item_name'])
+                        </th>
+                        <th scope="col" wire:click="sortBy('item_name')"  style="cursor: pointer;">Number of Times Stalked
+                            @include('partials._sort-icon',['field'=>'item_name'])
                         </th>
                         <th>Option</th>
                     </tr>
@@ -35,6 +38,7 @@
                     <tr>
                         <th scope="row">{{$all_items->firstitem() + $i}}</th>
                         <td style="text-transform: capitalize">{{$item->item_name}}</td>
+                        <td style="text-transform: capitalize">{{$item->purchase_count}}</td>
                         <td class="text-wrap">
                         <a href="{{URL::signedRoute('EditItem', ['item_id' =>$item->id])}}" class="btn btn-sm btn-info"> Edit</a>
                         <button wire:click="deleteItem({{ $item->id }})" class=" btn btn-sm btn-danger">Delete</button>
@@ -54,10 +58,11 @@
             {{$all_items->links()}}
         </div>
     </div>
-    {{-- <div class="row">
+    @can('add_items')
+    <div class="row">
         <div class="text-right col-sm-12 mb-2">
             <button class="btn btn-sm btn-info mb-2" onclick="Livewire.emit('openModal', 'items.add-items-form')">Add Item (s)</button>
-                
         </div>
-    </div> --}}
+    </div>
+    @endcan
 </div>

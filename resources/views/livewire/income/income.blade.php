@@ -30,6 +30,9 @@
                         <th scope="col" wire:click="sortBy('source_of_income')"  style="cursor: pointer;">Source of Income
                             @include('partials._sort-icon',['field'=>'source_of_income'])
                         </th>
+                        <th scope="col" wire:click="sortBy('created_at')"  style="cursor: pointer;"> Reason
+                            @include('partials._sort-icon',['field'=>'created_at'])
+                        </th>
                         <th scope="col" wire:click="sortBy('created_at')"  style="cursor: pointer;"> Date
                             @include('partials._sort-icon',['field'=>'created_at'])
                         </th>
@@ -42,8 +45,9 @@
                     @foreach ($income as $i=>$item)
                     <tr>
                         <th scope="row">{{$income->firstitem() + $i}}</th>
-                        <td style="text-transform: capitalize">{{ number_format($item->amount)}}</td>
+                        <td style="text-transform: capitalize">{{ number_format($item->amount)}}/=</td>
                         <td style="text-transform: capitalize">{{$item->source_of_income}}</td>
+                        <td style="text-transform: capitalize">{{$item->income_reason}}</td>
                         <td style="text-transform: capitalize">{{$item->created_at}}</td>
                         @can('view_income_option')
                             <td class="text-wrap">
@@ -74,7 +78,6 @@
     <div class="row">
         <div class="text-right col-sm-12 mb-2">
             <button class="btn btn-sm btn-info mb-2" onclick="Livewire.emit('openModal', 'income.add-income')">Add Income (s)</button>
-
         </div>
     </div>
     @endcan

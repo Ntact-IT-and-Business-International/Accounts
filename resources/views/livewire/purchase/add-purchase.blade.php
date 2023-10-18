@@ -4,8 +4,13 @@
         <div class="form-group">
             <div class="form-group">
                 <label for="NameOfItem" class="mb-2">Name of Item<span style="color:red">*</span></label>
-                <input type="text" class="form-control" wire:model="name_of_item" id="NameOfItem">
-                @error('name_of_item') <span class="text-danger">{{ $message }}</span> @enderror
+                <select class="form-control" wire:model="itemId" id="NameOfItem">
+                    <option value="">Select an item</option>
+                    @foreach($items as $item)
+                        <option value="{{$item->id}}">{{$item->item_name}}</option>
+                    @endforeach
+                </select>
+                @error('itemId') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="Quantity" class="mb-2">Quantity<span style="color:red">*</span></label>
